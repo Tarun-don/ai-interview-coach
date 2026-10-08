@@ -161,6 +161,36 @@ Sends the completed interview transcript and receives the structured evaluation 
 
 ---
 
+## 🌐 4. Deployment Guide (Render & Vercel)
+
+### 🚀 Deploy Backend to Render (Web Service)
+1. In Render dashboard, click **New +** → **Web Service**.
+2. Connect your GitHub repository (`Tarun-don/ai-interview-coach`).
+3. Set the following fields:
+   * **Root Directory**: `backend`
+   * **Runtime**: `Python 3`
+   * **Build Command**: `pip install -r requirements.txt`
+   * **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+4. Under **Environment Variables**, add:
+   * `GROQ_API_KEY`: `your_groq_api_key_here`
+   * `GROQ_MODEL`: `llama-3.3-70b-versatile`
+   * *(Optional)* `FRONTEND_URL`: `https://your-frontend.vercel.app` (all `*.vercel.app` domains are automatically allowed)
+5. Click **Create Web Service**. Render will deploy your backend at a URL like `https://ai-interview-coach-backend.onrender.com`.
+
+---
+
+### ▲ Deploy Frontend to Vercel
+1. In Vercel dashboard, click **Add New...** → **Project**.
+2. Import your GitHub repository (`Tarun-don/ai-interview-coach`).
+3. Set the following fields:
+   * **Root Directory**: Click edit and select `frontend`.
+   * **Framework Preset**: `Next.js`
+4. Under **Environment Variables**, add:
+   * `NEXT_PUBLIC_API_URL`: `https://ai-interview-coach-backend.onrender.com` *(use your actual Render backend URL, without trailing slash)*
+5. Click **Deploy**. Vercel will build and launch your frontend!
+
+---
+
 ## 🛠️ Stack & Libraries
 
 - **Frontend**: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS

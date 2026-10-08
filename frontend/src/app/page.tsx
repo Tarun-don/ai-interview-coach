@@ -21,8 +21,9 @@ interface ReportData {
   pass_fail: "Pass" | "Fail";
 }
 
-const API_BASE_URL =
+const RAW_API_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_BASE_URL = RAW_API_URL.replace(/\/+$/, "");
 
 const POPULAR_TOPICS = [
   "Python Concurrency",
